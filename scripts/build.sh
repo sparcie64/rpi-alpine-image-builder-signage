@@ -39,8 +39,11 @@ cp $APP_DIR/keys/build.rsa.pub /etc/apk/keys/
 mkdir -p /root/.abuild
 echo "PACKAGER_PRIVKEY=\"$APP_DIR/keys/build.rsa\"" >> /root/.abuild/abuild.conf
 
+mkdir -p /root/.mkimage/
+cp $WORKDIR/aports/scripts/genapkovl-rpicustom.sh /root/.mkimage/genapkovl-rpicustom.sh
 rm -rf $WORKDIR/output
 cd $WORKDIR
+chmod +x $WORKDIR/aports/scripts/*
 sh $WORKDIR/aports/scripts/mkimage.sh \
     --tag $ALPINE_VERSION-rpicustom \
     --outdir $WORKDIR/output \
