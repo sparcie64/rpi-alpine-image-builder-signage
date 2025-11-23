@@ -51,17 +51,29 @@ alpine-base
 wpa_supplicant
 EOF
 
+# from X11 setup
+setup-devd udev
+
+# Signage startscript
+makefile signage:signage 0644 "/home/signage/.xinitrc" <<EOF
+exec dbus-launch --exit-with-session chromium  https://raspberrypi.com  --kiosk --noerrdialogs --disable-infobars --no-first-run --enable-features=OverlayScrollbar --start-maximized
+EOF
+
 # Set MOTD
 makefile root:root 0644 "$tmp"/etc/motd <<EOF
-Congratulations, it works!
-
-This image was built with Raspberry Pi Alpine Image Builder. 
-Edit 'alpine/aports/scripts/genapkovl-rpicustom.sh' to customise the image.
+SignagePI by SPARCie. UNAUTHORIZED ACCESS PROHIBITED!
 EOF
+
+adduser -D signage
+
+addgroup signage video
+addgroup signage input
+addgroup signage audio
 
 
 # Add services
 rc_add devfs sysinit
+rc_add dbus sysinit
 rc_add dmesg sysinit
 rc_add mdev sysinit
 rc_add hwdrivers sysinit

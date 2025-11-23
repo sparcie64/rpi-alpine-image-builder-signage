@@ -47,4 +47,5 @@ sh $WORKDIR/aports/scripts/mkimage.sh \
     --profile rpicustom \
     --arch $BUILD_ARCH \
     --hostkeys \
-    --repository http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/main
+    --repository http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/main \
+    --extra-repository http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/community

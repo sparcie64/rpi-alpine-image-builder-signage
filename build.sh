@@ -1,7 +1,7 @@
 set -e
 
 # Set the version of Alpine Linux to use.
-export ALPINE_VERSION=3.19
+export ALPINE_VERSION=3.22
 
 # Set the architecture to build for.
 #  - armhf: Raspberry Pi 1, Zero, CM1
